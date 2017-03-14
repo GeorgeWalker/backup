@@ -2,6 +2,6 @@
 # start-cron.sh
 
 rsyslogd
-cron
+/usr/sbin/crond
 touch /var/log/cron.log
 tail -F /var/log/syslog /var/log/cron.log

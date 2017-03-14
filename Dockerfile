@@ -39,6 +39,7 @@ RUN crontab /app/crontab
 ADD start-cron.sh /usr/bin/start-cron.sh
 RUN chmod +x /usr/bin/start-cron.sh
 RUN touch /var/log/cron.log
+RUN chmod a+rwx /var/log/cron.log
 
 CMD /usr/bin/start-cron.sh
 
