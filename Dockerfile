@@ -43,7 +43,7 @@ RUN chmod a+rwx /var/log/cron.log
 
 RUN /usr/sbin/crond&
 
-RUN adduser --uid 1001 --gid 0 
+RUN adduser --uid 1001 --gid 0 backup
 
 USER 1001
 
