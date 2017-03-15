@@ -17,6 +17,8 @@ RUN yum -y update && yum clean all
 
 RUN yum -y install cronie yum-cron && yum clean all
 
+RUN yum -y install nss_wrapper gettext && yum clean all
+
 
 RUN touch /var/run/crond.pid
 RUN chmod -R a+rwx /var/run/crond.pid
@@ -37,16 +39,14 @@ RUN ln -s /opt/rh/rh-postgresql94/root/usr/lib64/libpq.so.rh-postgresql94-5  /us
 ADD crontab /app/crontab
 RUN chmod a+rwx /app/crontab
 # RUN crontab /app/crontab
+ADD passwd.template /app/passwd.template
+
 ADD start-cron.sh /usr/bin/start-cron.sh
 RUN chmod +x /usr/bin/start-cron.sh
 RUN touch /var/log/cron.log
 RUN chmod a+rwx /var/log/cron.log
 
 RUN /usr/sbin/crond&
-
-RUN adduser --uid 9999 --gid 0 backup
-
-USER 9999
 
 CMD /usr/bin/start-cron.sh
 
