@@ -35,6 +35,7 @@ RUN ln -s /opt/rh/rh-postgresql94/root/usr/lib64/libpq.so.rh-postgresql94-5  /us
 RUN ln -s /opt/rh/rh-postgresql94/root/usr/lib64/libpq.so.rh-postgresql94-5  /usr/lib/libpq.so.rh-postgresql94-5
 
 ADD crontab /app/crontab
+RUN chmod a+rwx /app/crontab
 # RUN crontab /app/crontab
 ADD start-cron.sh /usr/bin/start-cron.sh
 RUN chmod +x /usr/bin/start-cron.sh
@@ -43,9 +44,9 @@ RUN chmod a+rwx /var/log/cron.log
 
 RUN /usr/sbin/crond&
 
-RUN adduser --uid 1001 --gid 0 backup
+RUN adduser --uid 9999 --gid 0 backup
 
-USER 1001
+USER 9999
 
 CMD /usr/bin/start-cron.sh
 
