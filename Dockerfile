@@ -43,7 +43,7 @@ RUN chmod a+rwx /var/log/cron.log
 
 RUN /usr/sbin/crond&
 
-RUN adduser --disabled-password --uid 1001 --gid 0 
+RUN adduser --uid 1001 --gid 0 
 
 USER 1001
 
